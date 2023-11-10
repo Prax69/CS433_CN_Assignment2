@@ -101,9 +101,9 @@ def run():
     info(net['rb'].cmd("ip route add 10.2.0.0/24 via 10.100.1.2"))
     info(net['rc'].cmd("ip route add 10.0.0.0/24 via 10.100.2.2"))
     info(net['rc'].cmd("ip route add 10.1.0.0/24 via 10.100.1.1"))
-    info(net['ra'].cmd("ip route show"))
-    info(net['rb'].cmd("ip route show"))
-    info(net['rc'].cmd("ip route show"))
+    info(net['ra'].cmd("route -n"))
+    info(net['rb'].cmd("route -n"))
+    info(net['rc'].cmd("route -n"))
     
     net.start()
     #racap = net['ra'].popen('tcpdump -i any -w ra.pcap')     #uncomment these to generate pcap file for ra router
