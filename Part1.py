@@ -94,7 +94,9 @@ def run():
 
     # Add routing for reaching networks that aren't directly connected
     info(net['ra'].cmd("ip route add 10.1.0.0/24 via 10.100.0.2"))
-    info(net['ra'].cmd("ip route add 10.2.0.0/24 via 10.100.2.1")) #comment this line to make packets from subnet1 follow ra->rb->rc path
+    info(net['ra'].cmd("ip route add 10.2.0.0/24 via 10.100.2.1")) #comment this line and uncomment next line to make packets from subnet1 follow ra->rb->rc path
+    #info(net['ra'].cmd("ip route add 10.2.0.0/24 via 10.100.0.2"))
+    
     info(net['rb'].cmd("ip route add 10.0.0.0/24 via 10.100.0.1"))
     info(net['rb'].cmd("ip route add 10.2.0.0/24 via 10.100.1.2"))
     info(net['rc'].cmd("ip route add 10.0.0.0/24 via 10.100.2.2"))
@@ -102,10 +104,15 @@ def run():
     info(net['ra'].cmd("ip route show"))
     info(net['rb'].cmd("ip route show"))
     info(net['rc'].cmd("ip route show"))
+    
     net.start()
+    #racap = net['ra'].popen('tcpdump -i any -w ra.pcap')     #uncomment these to generate pcap file for ra router
+    #net.pingAll()
+    
     CLI(net)
+    #net['ra'].cmd("kill %tcpdump")
     net.stop()
-
+    
 
 if __name__ == '__main__':
     setLogLevel('info')
