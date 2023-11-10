@@ -22,12 +22,12 @@ class LinuxRouter(Node):
 
 class NetworkTopo(Topo):
     def build(self, **_opts):
-        # Add 2 routers in two different subnets
+        # Add 3 routers in three different subnets
         ra = self.addHost('ra', cls=LinuxRouter, ip='10.0.0.1/24')
         rb = self.addHost('rb', cls=LinuxRouter, ip='10.1.0.1/24')
         rc = self.addHost('rc', cls=LinuxRouter, ip='10.2.0.1/24')
 
-        # Add 2 switches
+        # Add 3 switches
         sa = self.addSwitch('s1')
         sb = self.addSwitch('s2')
         sc = self.addSwitch('s3')
@@ -106,7 +106,7 @@ def run():
     info(net['rc'].cmd("route -n"))
     
     net.start()
-    #racap = net['ra'].popen('tcpdump -i any -w ra.pcap')     #uncomment these to generate pcap file for ra router
+    #racap = net['ra'].popen('tcpdump -i any -w ra.pcap')     #uncomment these and any other commented line below to generate pcap file for ra router
     #net.pingAll()
     
     CLI(net)
