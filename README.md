@@ -18,6 +18,7 @@ $ sudo python3 Part1.py
 ```
 in shell. <br />
 PART 2: <br />
+        For a : We have implemented the topology and also the required configuration
        <br />
     
     
