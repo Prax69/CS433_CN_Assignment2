@@ -34,7 +34,10 @@ class NetworkTopo(Topo):
 
         for h,s in [(h1,s1),(h2,s1),(h3,s2),(h4,s2)]:
         	self.addLink(h,s,bw='10Mbps')
-        self.addLink(s1,s2,bw='10Mbps',loss=args.linkloss)
+        if (args.config=='d'):
+            self.addLink(s1,s2,bw='10Mbps',loss=args.linkloss)
+        else:
+            self.addLink(s1,s2,bw='10Mbps')
         
 
 
